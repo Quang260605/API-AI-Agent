@@ -12,7 +12,8 @@ Toàn bộ bộ kỹ năng được đóng gói gọn gàng, không trùng lặp
 c:\Git_Skill_AI\Skill_AI_ALL\
 ├── UNIVERSAL_AI_SKILL_PACK.md     # [FILE GỐC DUY NHẤT] Chứa trọn bộ Rule + 6 Module Skill (Dual-Format)
 ├── secret_guard.py                # Công cụ Python Offline quét & che giấu mật khẩu/API key ([REDACTED])
-├── apply-skill-pack.ps1           # Script tự động cài đặt 1 chạm + tự động đóng gói .zip cho Claude App
+├── apply-skill-pack.ps1           # Script tự động cài đặt 1 chạm trên Windows (PowerShell)
+├── apply-skill-pack.sh            # Script tự động cài đặt 1 chạm trên Kali Linux / Ubuntu / macOS (Bash)
 ├── README_HDSD.md                 # Tài liệu Hướng dẫn sử dụng đầy đủ này
 ├── claude-app-zips\               # 8 file .zip chuẩn POSIX để Upload trực tiếp vào Claude Desktop App
 │   ├── universal-ai-elite-skill-pack.zip        # Gói All-in-One (khuyên dùng nếu chỉ muốn up 1 file)
@@ -36,21 +37,40 @@ c:\Git_Skill_AI\Skill_AI_ALL\
 
 ---
 
-## 2. Cách Cài Đặt Nhanh Bằng Script Tự Động (Khuyên Dùng)
+## 2. Cách Cài Đặt Nhanh Bằng Script Tự Động (Windows & Kali Linux)
 
-Mở **PowerShell** và chạy một trong các lệnh sau:
+### 🐧 A. Trên Kali Linux / Ubuntu / Debian / macOS / WSL
 
-### 🔹 Trường hợp 1: Cài đặt Toàn Cục (Global) cho máy tính của bạn
-Tự động kiểm tra bảo mật (`secret_guard.py`), đóng gói lại bộ `.zip` cho Claude App, và cài đặt vào **Claude Code**, **Tab `Code` của Claude App**, **OpenCode**, và **Antigravity/Gemini**:
-```powershell
-powershell -ExecutionPolicy Bypass -File "c:\Git_Skill_AI\Skill_AI_ALL\apply-skill-pack.ps1" -Target Global
-```
+1. **Lệnh 1 dòng: Tải từ GitHub và cài đặt Toàn Cục (Global) ngay lập tức**:
+   ```bash
+   git clone https://github.com/Quang260605/API-AI-Agent.git ~/Skill_AI_ALL && bash ~/Skill_AI_ALL/apply-skill-pack.sh global
+   ```
+2. **Nếu đã có sẵn thư mục trên máy Kali Linux**:
+   - **Cài đặt Toàn cục (Global)** (cho Claude Code, OpenCode, Gemini CLI/Antigravity):
+     ```bash
+     bash ~/Skill_AI_ALL/apply-skill-pack.sh global
+     ```
+   - **Cài đặt vào một Dự án (Project) cụ thể**:
+     ```bash
+     bash ~/Skill_AI_ALL/apply-skill-pack.sh project /duong/dan/du_an
+     ```
+   - **Cài đặt cả Global lẫn Dự án hiện tại**:
+     ```bash
+     bash ~/Skill_AI_ALL/apply-skill-pack.sh all "$(pwd)"
+     ```
 
-### 🔹 Trường hợp 2: Cài đặt vào một Dự Án (Project) cụ thể
-Tự động sinh ra `AGENTS.md`, `CLAUDE.md`, `.cursorrules`, `.windsurfrules`, `.clinerules`, `.github/copilot-instructions.md` và `.claude/skills/` từ file gốc `UNIVERSAL_AI_SKILL_PACK.md` ngay trong thư mục dự án của bạn:
-```powershell
-powershell -ExecutionPolicy Bypass -File "c:\Git_Skill_AI\Skill_AI_ALL\apply-skill-pack.ps1" -Target Project -ProjectPath "D:\Du_An_Cua_Ban"
-```
+---
+
+### 🪟 B. Trên Windows (PowerShell)
+
+1. **Cài đặt Toàn Cục (Global) cho máy tính Windows**:
+   ```powershell
+   powershell -ExecutionPolicy Bypass -File "c:\Git_Skill_AI\Skill_AI_ALL\apply-skill-pack.ps1" -Target Global
+   ```
+2. **Cài đặt vào một Dự Án (Project) cụ thể**:
+   ```powershell
+   powershell -ExecutionPolicy Bypass -File "c:\Git_Skill_AI\Skill_AI_ALL\apply-skill-pack.ps1" -Target Project -ProjectPath "D:\Du_An_Cua_Ban"
+   ```
 
 ---
 
@@ -95,13 +115,23 @@ Copy file `UNIVERSAL_AI_SKILL_PACK.md` vào thư mục gốc của dự án và 
 Trước khi đẩy code lên GitHub, gửi log cho người khác, hoặc đưa một thư mục lạ cho AI đọc, hãy chạy công cụ Offline `secret_guard.py`:
 
 1. **Chế độ Quét Kiểm Tra (Không sửa file)**:
-   ```powershell
-   python "c:\Git_Skill_AI\Skill_AI_ALL\secret_guard.py" "D:\Du_An_Cua_Ban"
-   ```
+   - **Windows**:
+     ```powershell
+     python "c:\Git_Skill_AI\Skill_AI_ALL\secret_guard.py" "D:\Du_An_Cua_Ban"
+     ```
+   - **Kali Linux / Linux / macOS**:
+     ```bash
+     python3 ~/Skill_AI_ALL/secret_guard.py /duong/dan/du_an
+     ```
 2. **Chế độ Tự Động Làm Sạch (`--redact`)**:
-   ```powershell
-   python "c:\Git_Skill_AI\Skill_AI_ALL\secret_guard.py" "D:\Du_An_Cua_Ban" --redact
-   ```
+   - **Windows**:
+     ```powershell
+     python "c:\Git_Skill_AI\Skill_AI_ALL\secret_guard.py" "D:\Du_An_Cua_Ban" --redact
+     ```
+   - **Kali Linux / Linux / macOS**:
+     ```bash
+     python3 ~/Skill_AI_ALL/secret_guard.py /duong/dan/du_an --redact
+     ```
    *(Tự động thay thế mọi mật khẩu, API key `sk-...`, `ghp_...`, `AIza...`, `AKIA...`, JWT, chuỗi kết nối DB `user:password@host` thành `[REDACTED]`).*
 
 ### 4.2. Quy tắc làm việc với `.env` khi dùng AI Agent
