@@ -1,0 +1,16 @@
+# Zero-Leak Security Ignore Rules
+.env
+.env.*
+*.pem
+*.key
+*.pfx
+*.p12
+*credentials*.json
+*secret*
+!secret_guard.py
+
+# Python / OS cache
+__pycache__/
+*.py[cod]
+.DS_Store
+Thumbs.db
